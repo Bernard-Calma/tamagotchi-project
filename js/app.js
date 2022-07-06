@@ -29,6 +29,11 @@ class Game {
         console.log("updateStats() completed : All labels are updated.")
     }
 
+    petDied = () => {
+        clearInterval(hungerInterval)
+        clearInterval(hungerSleepiness)
+    }
+
     addHunger = () => {
         this.hunger +=1 
         this.updateStats()
@@ -36,22 +41,22 @@ class Game {
         if (this.hunger >= 10) {
             alert("Your pet died.")
             this.alive = false
-            clearInterval(hungerInterval)
+            this.petDied()
             console.log("Add Hunger stops")
         }
     }
 
-    // addSleepiness = () => {
-    //     this.hunger +=1 
-    //     this.updateStats()
-    //     console.log("Hunger increased!")
-    //     if (this.hunger >= 10) {
-    //         alert("Your pet died.")
-    //         this.alive = false
-    //         clearInterval(hungerInterval)
-    //         console.log("Add Hunger stops")
-    //     }
-    // }
+    addSleepiness = () => {
+        this.sleepiness +=1 
+        this.updateStats()
+        console.log("Sleepiness increased!")
+        if (this.sleepiness >= 10) {
+            alert("Your pet died.")
+            this.alive = false
+            this.petDied()
+            console.log("Add Sleepiness stops")
+        }
+    }
 
     clickButtons = () => {
         let divButtons = document.querySelector(".buttons")
@@ -75,8 +80,10 @@ pet.updateStats()
 pet.clickButtons()
 
 let hungerInterval = setInterval(pet.addHunger,5000)
-// let hungerSleepiness = setInterval(pet.addSleepiness,10000)
 console.log("Add Hunger Starts")
+let hungerSleepiness = setInterval(pet.addSleepiness,10000)
+console.log("Add Sleepiness Starts")
+
 
 
 
