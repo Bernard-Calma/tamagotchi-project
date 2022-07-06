@@ -7,6 +7,14 @@ class Game {
         this.age = 0
         this.alive = true
         this.light = "on"
+
+        this.hungerInterval = setInterval(this.addHunger,5000)
+        console.log("Add Hunger Starts")
+        this.sleepinessInterval = setInterval(this.updateSleepiness,20000)
+        console.log("Update Sleepiness Starts")
+        this.boredomInterval = setInterval(this.addBoredom,10000)
+        console.log("Add Boredom Starts")
+        this.ageInterval = setInterval(this.addAge,50000)
     }
 
     updateStats = () => {
@@ -43,19 +51,27 @@ class Game {
     
     // +1 stats every interval
     updateStatsInterval = () => {
-        let hungerInterval = setInterval(this.addHunger,5000)
-        console.log("Add Hunger Starts")
-        let sleepinessInterval = setInterval(this.updateSleepiness,20000)
-        console.log("Update Sleepiness Starts")
-        let boredomInterval = setInterval(this.addBoredom,10000)
-        console.log("Add Boredom Starts")
-        let ageInterval = setInterval(this.addAge,50000)
+        // let hungerInterval = setInterval(this.addHunger,5000)
+        // console.log("Add Hunger Starts")
+        // let sleepinessInterval = setInterval(this.updateSleepiness,20000)
+        // console.log("Update Sleepiness Starts")
+        // let boredomInterval = setInterval(this.addBoredom,10000)
+        // console.log("Add Boredom Starts")
+        // let ageInterval = setInterval(this.addAge,50000)
         }
 
     petDied = () => {
-        clearInterval(hungerInterval)
-        clearInterval(sleepinessInterval)
-        clearInterval(boredomInterval)
+        clearInterval(this.hungerInterval)
+        clearInterval(this.sleepinessInterval)
+        clearInterval(this.boredomInterval)
+        clearInterval(this.ageInterval)
+        this.name = name
+        this.hunger = 1
+        this.sleepiness = 1
+        this.boredom = 1
+        this.age = 0
+        this.alive = true
+        this.light = "on"
     }
 
     addHunger = () => {
