@@ -87,16 +87,6 @@ class Game {
         }
     }
 
-    sleepPet = () => {
-        console.log("Sleep Pet Initianted")
-        if (this.sleepiness > 0) {
-            this.sleepiness -= 1
-            this.updateStats()
-        } else if (this.sleepiness <= 0) {
-            alert("Your Pet is Fully Awake")
-        }
-    }
-
     playPet = () => {
         console.log("Play Pet Initianted")
         if (this.boredom > 0) {
@@ -104,6 +94,16 @@ class Game {
             this.updateStats()
         } else if (this.boredom <= 0) {
             alert("Your Pet is not bored")
+        }
+    }
+
+    lightSwitch = () => {
+        console.log("Sleep Pet Initianted")
+        if (this.sleepiness > 0) {
+            this.sleepiness -= 1
+            this.updateStats()
+        } else if (this.sleepiness <= 0) {
+            alert("Your Pet is Fully Awake")
         }
     }
 
@@ -130,7 +130,7 @@ const btnLight = document.querySelector("#btnLight")
 const btnPlay = document.querySelector("#btnPlay")
 // console.log(petButton)
 btnPet.addEventListener("click",pet.feedPet)
-btnLight.addEventListener("click",pet.sleepPet)
+btnLight.addEventListener("click",pet.lightSwitch)
 btnPlay.addEventListener("click",pet.playPet)
 
 
