@@ -48,6 +48,9 @@ class Game {
     }
 
     addHunger = () => {
+        if(this.light === "off"){
+            return
+        }
         this.hunger +=1 
         this.updateStats()
         console.log("Hunger increased!")
@@ -72,6 +75,9 @@ class Game {
     }
 
     addBoredom = () => {
+        if(this.light === "off"){
+            return
+        }
         this.boredom +=1 
         this.updateStats()
         console.log("Boredom increased!")
@@ -147,8 +153,8 @@ class Game {
 
     // decrease sleepienss if light is on. Vise-Versa
     updateSleepiness = () => {
-        // console.log("Update Sleepines Start")
-        // console.log("Update Sleepiness:",this.light)
+        console.log("Update Sleepines Start")
+        console.log("Update Sleepiness:",this.light)
         if (this.light === "on") {
             this.addSleepiness()
         } else if (this.light === "off") {
