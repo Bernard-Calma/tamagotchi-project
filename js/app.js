@@ -31,7 +31,8 @@ class Game {
 
     petDied = () => {
         clearInterval(hungerInterval)
-        clearInterval(hungerSleepiness)
+        clearInterval(sleepinessInterval)
+        clearInterval(boredomInterval)
     }
 
     addHunger = () => {
@@ -58,6 +59,18 @@ class Game {
         }
     }
 
+    addBoredom = () => {
+        this.boredom +=1 
+        this.updateStats()
+        console.log("Boredom increased!")
+        if (this.boredom >= 10) {
+            alert("Your pet died.")
+            this.alive = false
+            this.petDied()
+            console.log("Add Boredom stops")
+        }
+    }
+
     clickButtons = () => {
         let divButtons = document.querySelector(".buttons")
         console.log(divButtons)
@@ -79,10 +92,14 @@ const pet = new Game(petName)
 pet.updateStats()
 pet.clickButtons()
 
+
+// +1 stats every interval
 let hungerInterval = setInterval(pet.addHunger,5000)
 console.log("Add Hunger Starts")
-let hungerSleepiness = setInterval(pet.addSleepiness,10000)
+let sleepinessInterval = setInterval(pet.addSleepiness,20000)
 console.log("Add Sleepiness Starts")
+let boredomInterval = setInterval(pet.addBoredom,10000)
+console.log("Add Boredom Starts")
 
 
 
