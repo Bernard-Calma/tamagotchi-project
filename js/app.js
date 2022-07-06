@@ -28,7 +28,6 @@ class Game {
         let lblLight = document.querySelector("#lightStatus")
         let lblLight2 = document.querySelector("#lblLight")
         let petImage = document.querySelector("#idPetImage")
-        petImage.attributes[0].value = this.petImage
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
         lblSleepiness.innerText = this.sleepiness
@@ -50,6 +49,14 @@ class Game {
             e.innerText = this.name
         }
         
+        //change image according to Age
+        if (this.name === "") {
+            this.petImage = "images/light_blue_egg.png"
+        } else if (this.age >= 0 && this.age < 10) {
+            this.petImage = "images/baby_blue_dragon.png"
+        }
+        petImage.attributes[0].value = this.petImage
+
         console.log("updateStats() completed : All labels are updated.")
         // console.log(petImage.attributes[0].value)
     }
