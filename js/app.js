@@ -6,6 +6,7 @@ class Game {
         this.boredom = 1
         this.age = 0
         this.alive = true
+        this.light = "on"
     }
 
     updateStats = () => {
@@ -98,16 +99,27 @@ class Game {
     }
 
     lightSwitch = () => {
-        console.log("Sleep Pet Initianted")
+        if (this.light === "on") {
+            alert("light is turned off")
+            this.light = "off"
+        } else if (this.light === "off") {
+            alert("light is turned on")
+            this.light = "on"
+        }
+        
+    }
+
+}
+
+console.log("Sleep Pet Initianted")
         if (this.sleepiness > 0) {
             this.sleepiness -= 1
             this.updateStats()
         } else if (this.sleepiness <= 0) {
             alert("Your Pet is Fully Awake")
         }
-    }
 
-}
+
 
 let petName = prompt("Please name your pet")
 const pet = new Game(petName)
