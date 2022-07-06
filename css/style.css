@@ -14,3 +14,9 @@ body {
     justify-content: center;
     background-color: rgb(0, 145, 255);
 }
+
+#idPetImage {
+    width: 200px;
+    height: 250px;
+    margin: 50px;
+}
