@@ -7,7 +7,9 @@ class Game {
         this.age = 0
         this.alive = true
         this.light = "on"
+        this.petImage = "images/light_blue_egg.png"
 
+        // +1 stats every interval
         this.hungerInterval = setInterval(this.addHunger,5000)
         console.log("Add Hunger Starts")
         this.sleepinessInterval = setInterval(this.updateSleepiness,20000)
@@ -25,6 +27,8 @@ class Game {
         let lblAge = document.querySelector("#age")
         let lblLight = document.querySelector("#lightStatus")
         let lblLight2 = document.querySelector("#lblLight")
+        let petImage = document.querySelector("#idPetImage")
+        petImage.attributes[0].value = this.petImage
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
         lblSleepiness.innerText = this.sleepiness
@@ -47,18 +51,8 @@ class Game {
         }
         
         console.log("updateStats() completed : All labels are updated.")
+        // console.log(petImage.attributes[0].value)
     }
-    
-    // +1 stats every interval
-    updateStatsInterval = () => {
-        // let hungerInterval = setInterval(this.addHunger,5000)
-        // console.log("Add Hunger Starts")
-        // let sleepinessInterval = setInterval(this.updateSleepiness,20000)
-        // console.log("Update Sleepiness Starts")
-        // let boredomInterval = setInterval(this.addBoredom,10000)
-        // console.log("Add Boredom Starts")
-        // let ageInterval = setInterval(this.addAge,50000)
-        }
 
     petDied = () => {
         clearInterval(this.hungerInterval)
@@ -195,9 +189,6 @@ const playGame = () => {
     let petName = prompt("Please name your pet")
     const pet = new Game(petName)
     pet.updateStats()
-    pet.updateStatsInterval()
-    
-    
     
         // buttons
         const btnPet = document.querySelector("#btnFeed")
