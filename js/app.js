@@ -18,6 +18,12 @@ class Game {
         lblSleepiness.innerText = this.sleepiness
         lblBoredom.innerText = this.boredom
         lblAge.innerText = this.age
+
+        //change all classes with .petName to this.name
+        let lblPetName = document.querySelectorAll(".petName")
+        for (let e of lblPetName) {
+            e.innerText = this.name
+        }
         
     }
 
