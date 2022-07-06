@@ -40,6 +40,17 @@ class Game {
         
         console.log("updateStats() completed : All labels are updated.")
     }
+    
+    // +1 stats every interval
+    updateStatsInterval = () => {
+        let hungerInterval = setInterval(this.addHunger,5000)
+        console.log("Add Hunger Starts")
+        let sleepinessInterval = setInterval(this.updateSleepiness,20000)
+        console.log("Update Sleepiness Starts")
+        let boredomInterval = setInterval(this.addBoredom,10000)
+        console.log("Add Boredom Starts")
+        let ageInterval = setInterval(this.addAge,50000)
+        }
 
     petDied = () => {
         clearInterval(hungerInterval)
@@ -160,17 +171,6 @@ class Game {
         } else if (this.light === "off") {
             this.decreaseSleepiness()
         }
-    }
-
-    // +1 stats every interval
-    updateStatsInterval = () => {
-    let hungerInterval = setInterval(this.addHunger,5000)
-    console.log("Add Hunger Starts")
-    let sleepinessInterval = setInterval(this.updateSleepiness,20000)
-    console.log("Update Sleepiness Starts")
-    let boredomInterval = setInterval(this.addBoredom,10000)
-    console.log("Add Boredom Starts")
-    let ageInterval = setInterval(this.addAge,50000)
     }
 
 }
