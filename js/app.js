@@ -21,6 +21,7 @@ class Game {
         lblSleepiness.innerText = this.sleepiness
         lblBoredom.innerText = this.boredom
         lblAge.innerText = this.age
+        // if light status is on, make button show turn off lights. Viceversa
         if(this.light === "on"){
             lblLight.innerText = "off"
         } else if (this.light === "off") {
@@ -104,6 +105,17 @@ class Game {
             alert("Your Pet is not bored")
         }
     }
+
+    decreaseSleepiness = () => {
+        console.log("add Sleepiness Initiated")
+        if (this.sleepiness > 0) {
+            this.sleepiness -= 1
+            this.updateStats()
+        } else if (this.sleepiness <= 0) {
+            alert("Your Pet is not sleepy")
+        }
+    }
+
 
     lightSwitch = () => {
         if (this.light === "on") {
