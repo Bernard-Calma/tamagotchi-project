@@ -140,11 +140,11 @@ class Game {
 
     lightSwitch = () => {
         if (this.light === "on") {
-            alert("light is turned off")
+            // alert("light is turned off")
             this.light = "off"
             this.updateStats()
         } else if (this.light === "off") {
-            alert("light is turned on")
+            // alert("light is turned on")
             this.light = "on"
             this.updateStats()
         }
