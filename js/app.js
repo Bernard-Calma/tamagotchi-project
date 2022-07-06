@@ -15,11 +15,18 @@ class Game {
         let lblSleepiness = document.querySelector("#sleepiness")
         let lblBoredom = document.querySelector("#boredom")
         let lblAge = document.querySelector("#age")
+        let lblLight = document.querySelector("#lightStatus")
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
         lblSleepiness.innerText = this.sleepiness
         lblBoredom.innerText = this.boredom
         lblAge.innerText = this.age
+        if(this.light === "on"){
+            lblLight.innerText = "off"
+        } else if (this.light === "off") {
+            lblLight.innerText = "on"
+        }
+
 
         //change all classes with .petName to this.name
         let lblPetName = document.querySelectorAll(".petName")
@@ -102,9 +109,11 @@ class Game {
         if (this.light === "on") {
             alert("light is turned off")
             this.light = "off"
+            this.updateStats()
         } else if (this.light === "off") {
             alert("light is turned on")
             this.light = "on"
+            this.updateStats()
         }
         
     }
