@@ -54,7 +54,7 @@ class Game {
             this.petImage = "images/light_blue_egg.png"
         } else if (this.age >= 0 && this.age < 10) {
             this.petImage = "images/baby_blue_dragon.png"
-        } else if (this.age >= 0 && this.age < 10) {
+        } else if (this.age > 10) {
             this.petImage = "images/adult_dragon.gif"
         }
         petImage.attributes[0].value = this.petImage
