@@ -86,6 +86,27 @@ class Game {
             alert("Your Pet is Full")
         }
     }
+
+    sleepPet = () => {
+        console.log("Sleep Pet Initianted")
+        if (this.sleepiness > 0) {
+            this.sleepiness -= 1
+            this.updateStats()
+        } else if (this.sleepiness <= 0) {
+            alert("Your Pet is Fully Awake")
+        }
+    }
+
+    playPet = () => {
+        console.log("Play Pet Initianted")
+        if (this.boredom > 0) {
+            this.boredom -= 1
+            this.updateStats()
+        } else if (this.boredom <= 0) {
+            alert("Your Pet is not bored")
+        }
+    }
+
 }
 
 let petName = prompt("Please name your pet")
@@ -104,8 +125,14 @@ let ageInterval = setInterval(pet.addAge,50000)
 
 
 // buttons
-const petButton = document.querySelector("#btnFeed")
+const btnPet = document.querySelector("#btnFeed")
+const btnLight = document.querySelector("#btnLight")
+const btnPlay = document.querySelector("#btnPlay")
 // console.log(petButton)
-petButton.addEventListener("click",pet.feedPet)
+btnPet.addEventListener("click",pet.feedPet)
+btnLight.addEventListener("click",pet.sleepPet)
+btnPlay.addEventListener("click",pet.playPet)
+
+
 
 console.log(pet)
