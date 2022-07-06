@@ -16,11 +16,14 @@ class Game {
         let lblBoredom = document.querySelector("#boredom")
         let lblAge = document.querySelector("#age")
         let lblLight = document.querySelector("#lightStatus")
+        let lblLight2 = document.querySelector("#lblLight")
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
         lblSleepiness.innerText = this.sleepiness
         lblBoredom.innerText = this.boredom
         lblAge.innerText = this.age
+        lblLight2.innerText = this.light
+        console.log("light",this.light)
         // if light status is on, make button show turn off lights. Viceversa
         if(this.light === "on"){
             lblLight.innerText = "off"
@@ -142,17 +145,18 @@ class Game {
         
     }
 
-}
-
-console.log("Sleep Pet Initianted")
-        if (this.sleepiness > 0) {
-            this.sleepiness -= 1
-            this.updateStats()
-        } else if (this.sleepiness <= 0) {
-            alert("Your Pet is Fully Awake")
+    // decrease sleepienss if light is on. Vise-Versa
+    updateSleepiness = () => {
+        // console.log("Update Sleepines Start")
+        // console.log("Update Sleepiness:",this.light)
+        if (this.light === "on") {
+            this.addSleepiness()
+        } else if (this.light === "off") {
+            this.decreaseSleepiness()
         }
+    }
 
-
+}
 
 let petName = prompt("Please name your pet")
 const pet = new Game(petName)
@@ -162,8 +166,8 @@ pet.updateStats()
 // +1 stats every interval
 let hungerInterval = setInterval(pet.addHunger,5000)
 console.log("Add Hunger Starts")
-let sleepinessInterval = setInterval(pet.addSleepiness,20000)
-console.log("Add Sleepiness Starts")
+let sleepinessInterval = setInterval(pet.updateSleepiness,20000)
+console.log("Update Sleepiness Starts")
 let boredomInterval = setInterval(pet.addBoredom,10000)
 console.log("Add Boredom Starts")
 let ageInterval = setInterval(pet.addAge,50000)
