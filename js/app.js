@@ -25,11 +25,26 @@ class Game {
             e.innerText = this.name
         }
         
+        console.log("updateStats() completed : All labels are updated.")
+    }
+
+    clickButtons = () => {
+        let divButtons = document.querySelector(".buttons")
+        console.log(divButtons)
+        divButtons.addEventListener("click", () => {
+            if (this.hunger > 0) {
+                this.hunger -= 1
+                this.updateStats()
+            } else if (this.hunger <= 0) {
+                alert("Your Pet is Full")
+            }
+        })
     }
 
 }
 
 const pet = new Game("Tamagochi")
 pet.updateStats()
+pet.clickButtons()
 
 console.log(pet)
