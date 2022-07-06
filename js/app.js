@@ -71,26 +71,26 @@ class Game {
         }
     }
 
-    clickButtons = () => {
-        let divButtons = document.querySelector(".buttons")
-        console.log(divButtons)
-        divButtons.addEventListener("click", () => {
-            if (this.hunger > 0) {
-                this.hunger -= 1
-                this.updateStats()
-            } else if (this.hunger <= 0) {
-                alert("Your Pet is Full")
-            }
-        })
+    addAge = () => {
+        this.age +=1 
+        this.updateStats()
+        console.log("Age increased!")
     }
 
-    
+    feedPet = () => {
+        console.log("Feed Pet Initianted")
+        if (this.hunger > 0) {
+            this.hunger -= 1
+            this.updateStats()
+        } else if (this.hunger <= 0) {
+            alert("Your Pet is Full")
+        }
+    }
 }
 
 let petName = prompt("Please name your pet")
 const pet = new Game(petName)
 pet.updateStats()
-pet.clickButtons()
 
 
 // +1 stats every interval
@@ -100,8 +100,12 @@ let sleepinessInterval = setInterval(pet.addSleepiness,20000)
 console.log("Add Sleepiness Starts")
 let boredomInterval = setInterval(pet.addBoredom,10000)
 console.log("Add Boredom Starts")
+let ageInterval = setInterval(pet.addAge,50000)
 
 
-
+// buttons
+const petButton = document.querySelector("#btnFeed")
+// console.log(petButton)
+petButton.addEventListener("click",pet.feedPet)
 
 console.log(pet)
