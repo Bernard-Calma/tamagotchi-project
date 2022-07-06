@@ -28,6 +28,16 @@ class Game {
         console.log("updateStats() completed : All labels are updated.")
     }
 
+    addHunger = () => {
+        this.hunger +=1 
+        this.updateStats()
+        console.log("Hunger increased!")
+        if (this.hunger >= 10) {
+            alert("Your pet died.")
+            return
+        }
+    }
+
     clickButtons = () => {
         let divButtons = document.querySelector(".buttons")
         console.log(divButtons)
@@ -41,10 +51,16 @@ class Game {
         })
     }
 
+    
 }
 
-const pet = new Game("Tamagochi")
+let petName = prompt("Please name your pet")
+const pet = new Game(petName)
 pet.updateStats()
 pet.clickButtons()
+
+
+setInterval(pet.addHunger,5000)
+
 
 console.log(pet)
