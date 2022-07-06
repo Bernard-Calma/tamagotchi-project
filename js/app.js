@@ -5,6 +5,7 @@ class Game {
         this.sleepiness = 1
         this.boredom = 1
         this.age = 0
+        this.alive = true
     }
 
     updateStats = () => {
@@ -34,9 +35,23 @@ class Game {
         console.log("Hunger increased!")
         if (this.hunger >= 10) {
             alert("Your pet died.")
-            return
+            this.alive = false
+            clearInterval(hungerInterval)
+            console.log("Add Hunger stops")
         }
     }
+
+    // addSleepiness = () => {
+    //     this.hunger +=1 
+    //     this.updateStats()
+    //     console.log("Hunger increased!")
+    //     if (this.hunger >= 10) {
+    //         alert("Your pet died.")
+    //         this.alive = false
+    //         clearInterval(hungerInterval)
+    //         console.log("Add Hunger stops")
+    //     }
+    // }
 
     clickButtons = () => {
         let divButtons = document.querySelector(".buttons")
@@ -59,8 +74,10 @@ const pet = new Game(petName)
 pet.updateStats()
 pet.clickButtons()
 
+let hungerInterval = setInterval(pet.addHunger,5000)
+// let hungerSleepiness = setInterval(pet.addSleepiness,10000)
+console.log("Add Hunger Starts")
 
-setInterval(pet.addHunger,5000)
 
 
 console.log(pet)
