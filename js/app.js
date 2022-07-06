@@ -107,7 +107,7 @@ class Game {
     }
 
     decreaseSleepiness = () => {
-        console.log("add Sleepiness Initiated")
+        console.log("decerease Sleepiness Initiated")
         if (this.sleepiness > 0) {
             this.sleepiness -= 1
             this.updateStats()
@@ -116,6 +116,18 @@ class Game {
         }
     }
 
+    increaseSleepiness = () => {
+        console.log("add Sleepiness Initiated")
+        if (this.sleepiness < 10) {
+            this.sleepiness += 1
+            this.updateStats()
+        } else if (this.sleepiness >= 10) {
+            alert("Your pet died.")
+            this.alive = false
+            this.petDied()
+            console.log("Add Sleepiness stops")
+        }
+    }
 
     lightSwitch = () => {
         if (this.light === "on") {
