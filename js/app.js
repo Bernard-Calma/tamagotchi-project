@@ -32,6 +32,7 @@ class Game {
         let lblLight = document.querySelector("#lightStatus")
         let lblLight2 = document.querySelector("#lblLight")
         let petImage = document.querySelector("#idPetImage")
+        let lblSleep = document.querySelector("#lblPopUp")
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
         lblSleepiness.innerText = this.sleepiness
@@ -72,6 +73,7 @@ class Game {
 
         //clear message
         lblStatusMessage.setAttribute("hidden",true)
+        lblSleep.setAttribute("hidden",true)
     }
 
     sleeping = () => {
@@ -80,7 +82,7 @@ class Game {
         disableFooter()
         //enable turn on light
         btnLight.removeAttribute("disabled")
-        let lblSleep = document.querySelector("#lblPopUp")
+        lblSleep.innerHTML = "&nbsp; z<br>&nbsp;z<br>z"
         //animate zzz 
         this.sleepAdd = setInterval(()=>{
             lblSleep.setAttribute("hidden",true)    
@@ -164,6 +166,8 @@ class Game {
     feedPet = () => {
         console.log("Feed Pet Initianted")
         lblStatusMessage.innerText = `You feed ${this.name}` 
+        let lblSleep = document.querySelector("#lblPopUp")
+        lblSleep.innerHTML = "<img src=\"images/food.png\"/>"
         this.moveToEat()
         if (this.hunger > 0) {
             this.hunger -= 1
@@ -172,6 +176,7 @@ class Game {
         } else if (this.hunger <= 0) {
             lblStatusMessage.innerText = "Your pet is full."
         }
+        lblSleep.removeAttribute("hidden")
         lblStatusMessage.removeAttribute("hidden")
     }
 
