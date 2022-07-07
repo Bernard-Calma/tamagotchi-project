@@ -246,6 +246,10 @@ const enableFooter = () => {
     }
 
 const playGame = () => {
+    // console.log(inputName.value)
+    if (inputName.value === "") {
+
+    } else {
     //disable play button and label message
     btnPlayRestart.setAttribute("hidden",true)
     lblStatusMessage.setAttribute("hidden", true)
@@ -253,16 +257,17 @@ const playGame = () => {
     //enable footer buttons
     enableFooter()
 
-    let petName = prompt("Please name your pet")
+    let petName = inputName.value
     const pet = new Game(petName)
     pet.updateStats()
-    
+
     // console.log(petButton)
     btnPet.addEventListener("click",pet.feedPet)
     btnLight.addEventListener("click",pet.lightSwitch)
     btnPlay.addEventListener("click",pet.playPet)
 
     console.log(pet)
+    }
 }
 
 
