@@ -88,14 +88,18 @@ class Game {
         clearInterval(this.boredomInterval)
         clearInterval(this.ageInterval)
         this.name = name
-        this.hunger = 1
-        this.sleepiness = 1
-        this.boredom = 1
+        this.hunger = 0
+        this.sleepiness = 0
+        this.boredom = 0
         this.age = 0
         this.alive = false
         this.light = "on"
         this.petImage = "images/tombstone.png"
         this.updateStats()
+        btnPlayRestart.innerText = "Play Again"
+        btnPlayRestart.removeAttribute("hidden")
+        lblStatusMessage.innerText = "Your pet died."
+        lblStatusMessage.removeAttribute("hidden")
     }
 
     addHunger = () => {
@@ -106,8 +110,6 @@ class Game {
         this.updateStats()
         console.log("Hunger increased!")
         if (this.hunger >= 10) {
-            alert("Your pet died.")
-            this.alive = false
             this.petDied()
             console.log("Add Hunger stops")
         }
@@ -118,8 +120,6 @@ class Game {
         this.updateStats()
         console.log("Sleepiness increased!")
         if (this.sleepiness >= 10) {
-            alert("Your pet died.")
-            this.alive = false
             this.petDied()
             console.log("Add Sleepiness stops")
         }
@@ -133,8 +133,6 @@ class Game {
         this.updateStats()
         console.log("Boredom increased!")
         if (this.boredom >= 10) {
-            alert("Your pet died.")
-            this.alive = false
             this.petDied()
             console.log("Add Boredom stops")
         }
@@ -182,8 +180,6 @@ class Game {
             this.sleepiness += 1
             this.updateStats()
         } else if (this.sleepiness >= 10) {
-            alert("Your pet died.")
-            this.alive = false
             this.petDied()
             console.log("Add Sleepiness stops")
         }
@@ -221,25 +217,33 @@ class Game {
 
 }
 
+// buttons
+let btnPlayRestart = document.querySelector("#btnPlayRestart")
+let lblStatusMessage = document.querySelector("#lblStatusMessage")
+const btnPet = document.querySelector("#btnFeed")
+const btnLight = document.querySelector("#btnLight")
+const btnPlay = document.querySelector("#btnPlay")
+
 const playGame = () => {
+    //disable play button and label message
+    btnPlayRestart.setAttribute("hidden",true)
+    lblStatusMessage.setAttribute("hidden", true)
+
     let petName = prompt("Please name your pet")
     const pet = new Game(petName)
     pet.updateStats()
     
-        // buttons
-        const btnPet = document.querySelector("#btnFeed")
-        const btnLight = document.querySelector("#btnLight")
-        const btnPlay = document.querySelector("#btnPlay")
-        // console.log(petButton)
-        btnPet.addEventListener("click",pet.feedPet)
-        btnLight.addEventListener("click",pet.lightSwitch)
-        btnPlay.addEventListener("click",pet.playPet)
+    // console.log(petButton)
+    btnPet.addEventListener("click",pet.feedPet)
+    btnLight.addEventListener("click",pet.lightSwitch)
+    btnPlay.addEventListener("click",pet.playPet)
 
     console.log(pet)
 }
 
-let petImage = document.querySelector("#idPetImage")
-petImage.addEventListener("click", playGame)
+
+btnPlayRestart.addEventListener("click", playGame)
+
 
 
 
