@@ -69,6 +69,9 @@ class Game {
         console.log("updateStats() completed : All labels are updated.")
         // console.log(petImage.attributes[0].value)
         console.log(this.petImage)
+
+        //clear message
+        lblStatusMessage.setAttribute("hidden",true)
     }
 
     sleeping = () => {
@@ -146,6 +149,7 @@ class Game {
         console.log("Boredom increased!")
         if (this.boredom >= 10) {
             lblStatusMessage.innerText = "Your pet died from boredom."
+            lblStatusMessage.removeAttribute("hidden")
             this.petDied()
             console.log("Add Boredom stops")
         }
@@ -163,7 +167,8 @@ class Game {
             this.hunger -= 1
             this.updateStats()
         } else if (this.hunger <= 0) {
-            alert("Your Pet is Full")
+            lblStatusMessage.innerText = "Your pet is full."
+            lblStatusMessage.removeAttribute("hidden")
         }
     }
 
@@ -174,7 +179,8 @@ class Game {
             this.updateStats()
         } else if (this.boredom <= 0) {
             console.log(this.boredom)
-            alert("Your Pet is not bored")
+            lblStatusMessage.innerText = "Your pet is not bored."
+            lblStatusMessage.removeAttribute("hidden")
         }
     }
 
@@ -204,18 +210,23 @@ class Game {
         
         if (this.light === "on") {
             // alert("light is turned off")
+            lblStatusMessage.innerText = "You turned off the lights"
+            lblStatusMessage.removeAttribute("hidden")
             this.light = "off"
             
             this.sleeping()
-            this.updateStats()
+            // this.updateStats()
+            
         } else if (this.light === "off") {
             // alert("light is turned on")
-            lblStatusMessage.setAttribute("hidden",true)
+            lblStatusMessage.innerText = "You turned on the lights"
+            lblStatusMessage.removeAttribute("hidden")
+            // lblStatusMessage.setAttribute("hidden",true)
             this.light = "on"
             clearInterval(this.sleepAdd)
             clearInterval(this.sleepRemove)
             document.querySelector("#lblSleeping").setAttribute("hidden",true)
-            this.updateStats()
+            // this.updateStats()
             enableFooter()
             // move pet
             this.moveInterval = setInterval(this.moveAlive,100)
@@ -249,6 +260,7 @@ class Game {
         clearInterval(this.moveInterval)
 
     }
+
 
 }
 
@@ -304,8 +316,3 @@ const playGame = () => {
 disableFooter()
 btnPlayRestart.addEventListener("click", playGame)
 
-
-
-
-    
-    
