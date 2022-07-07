@@ -10,7 +10,7 @@ class Game {
         this.petImage = "images/light_blue_egg.png"
 
         // +1 stats every interval
-        this.hungerInterval = setInterval(this.addHunger,1000)
+        this.hungerInterval = setInterval(this.addHunger,5000)
         console.log("Add Hunger Starts")
         this.sleepinessInterval = setInterval(this.updateSleepiness,20000)
         console.log("Update Sleepiness Starts")
@@ -98,7 +98,6 @@ class Game {
         this.updateStats()
         btnPlayRestart.innerText = "Play Again"
         btnPlayRestart.removeAttribute("hidden")
-        lblStatusMessage.innerText = "Your pet died."
         lblStatusMessage.removeAttribute("hidden")
         disableFooter()
     }
@@ -111,6 +110,7 @@ class Game {
         this.updateStats()
         console.log("Hunger increased!")
         if (this.hunger >= 10) {
+            lblStatusMessage.innerText = "Your pet died from hunger."
             this.petDied()
             console.log("Add Hunger stops")
         }
@@ -121,6 +121,7 @@ class Game {
         this.updateStats()
         console.log("Sleepiness increased!")
         if (this.sleepiness >= 10) {
+            lblStatusMessage.innerText = "Your pet died from lack of sleep."
             this.petDied()
             console.log("Add Sleepiness stops")
         }
@@ -134,6 +135,7 @@ class Game {
         this.updateStats()
         console.log("Boredom increased!")
         if (this.boredom >= 10) {
+            lblStatusMessage.innerText = "Your pet died from boredom."
             this.petDied()
             console.log("Add Boredom stops")
         }
