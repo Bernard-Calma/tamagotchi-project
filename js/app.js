@@ -224,10 +224,19 @@ const btnPet = document.querySelector("#btnFeed")
 const btnLight = document.querySelector("#btnLight")
 const btnPlay = document.querySelector("#btnPlay")
 
+//disable buttons at first load
+btnPet.setAttribute("disabled",true)
+btnLight.setAttribute("disabled",true)
+btnPlay.setAttribute("disabled",true)
+
 const playGame = () => {
     //disable play button and label message
     btnPlayRestart.setAttribute("hidden",true)
     lblStatusMessage.setAttribute("hidden", true)
+    //enable footer buttons
+    btnPet.removeAttribute("disabled")
+    btnLight.removeAttribute("disabled")
+    btnPlay.removeAttribute("disabled")
 
     let petName = prompt("Please name your pet")
     const pet = new Game(petName)
