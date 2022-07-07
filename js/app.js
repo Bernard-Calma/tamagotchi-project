@@ -80,7 +80,7 @@ class Game {
         disableFooter()
         //enable turn on light
         btnLight.removeAttribute("disabled")
-        let lblSleep = document.querySelector("#lblSleeping")
+        let lblSleep = document.querySelector("#lblPopUp")
         //animate zzz 
         this.sleepAdd = setInterval(()=>{
             lblSleep.setAttribute("hidden",true)    
@@ -164,6 +164,7 @@ class Game {
     feedPet = () => {
         console.log("Feed Pet Initianted")
         lblStatusMessage.innerText = `You feed ${this.name}` 
+        this.moveToEat()
         if (this.hunger > 0) {
             this.hunger -= 1
             this.updateStats()
@@ -262,6 +263,10 @@ class Game {
         petImagePosition.removeAttribute("style")
         clearInterval(this.moveInterval)
 
+    }
+
+    moveToEat = () => {
+        
     }
 
 
