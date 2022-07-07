@@ -10,7 +10,7 @@ class Game {
         this.petImage = "images/light_blue_egg.png"
 
         // +1 stats every interval
-        this.hungerInterval = setInterval(this.addHunger,5000)
+        this.hungerInterval = setInterval(this.addHunger,1000)
         console.log("Add Hunger Starts")
         this.sleepinessInterval = setInterval(this.updateSleepiness,20000)
         console.log("Update Sleepiness Starts")
@@ -52,17 +52,21 @@ class Game {
         }
         
         //change image according to Age
-        if (this.name === "") {
+        console.log(this.alive)
+        if (this.name === "" && this.alive === true) {
             this.petImage = "images/light_blue_egg.png"
-        } else if (this.age >= 0 && this.age < 10) {
+        } else if (this.age >= 0 && this.age < 10 && this.alive === true) {
             this.petImage = "images/baby_blue_dragon.png"
-        } else if (this.age > 10) {
+        } else if (this.age > 10 && this.alive === true) {
             this.petImage = "images/adult_dragon.gif"
+        } else if (this.alive === false) {
+            this.petImage = "images/tombstone.png"
         }
         petImage.attributes[0].value = this.petImage
 
         console.log("updateStats() completed : All labels are updated.")
         // console.log(petImage.attributes[0].value)
+        console.log(this.petImage)
     }
 
     sleeping = () => {
@@ -88,9 +92,10 @@ class Game {
         this.sleepiness = 1
         this.boredom = 1
         this.age = 0
-        this.alive = true
+        this.alive = false
         this.light = "on"
         this.petImage = "images/tombstone.png"
+        this.updateStats()
     }
 
     addHunger = () => {
