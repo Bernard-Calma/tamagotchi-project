@@ -17,6 +17,8 @@ class Game {
         this.boredomInterval = setInterval(this.addBoredom,10000)
         console.log("Add Boredom Starts")
         this.ageInterval = setInterval(this.addAge,50000)
+        //call movealive
+        this.moveInterval = setInterval(this.moveAlive,500)
 
         
     }
@@ -71,9 +73,12 @@ class Game {
 
     sleeping = () => {
         // sleeping mode
+        //disable buttons
         disableFooter()
+        //enable turn on light
         btnLight.removeAttribute("disabled")
         let lblSleep = document.querySelector("#lblSleeping")
+        //animate zzz 
         this.sleepAdd = setInterval(()=>{
             lblSleep.setAttribute("hidden",true)    
             console.log("Sleep added")           
@@ -82,6 +87,8 @@ class Game {
             lblSleep.removeAttribute("hidden")     
             console.log("Sleep removed")             
         },2000)
+        //stop pet moving
+        this.stopMove()
     }
 
     petDied = () => {
@@ -101,6 +108,7 @@ class Game {
         btnPlayRestart.innerText = "Play Again"
         btnPlayRestart.removeAttribute("hidden")
         lblStatusMessage.removeAttribute("hidden")
+        this.stopMove()
         disableFooter()
     }
 
@@ -209,6 +217,8 @@ class Game {
             document.querySelector("#lblSleeping").setAttribute("hidden",true)
             this.updateStats()
             enableFooter()
+            // move pet
+            this.moveInterval = setInterval(this.moveAlive,100)
         }
         
     }
@@ -224,11 +234,20 @@ class Game {
         }
     }
 
+    // move pet left and right when alive
     moveAlive = () => {
         console.log("Pet moved")
         let petImagePosition = document.querySelector("#idPetImage")
-        petImagePosition.style.left = `${-1 + Math.round(Math.random())*10}px`
+        petImagePosition.style.animation = "move 1s infinite"
         // console.log("move alive;",petImagePosition.style.left)
+    }
+
+    // function to stop pet to move
+    stopMove = () => {
+        let petImagePosition = document.querySelector("#idPetImage")
+        petImagePosition.removeAttribute("style")
+        clearInterval(this.moveInterval)
+
     }
 
 }
@@ -277,8 +296,6 @@ const playGame = () => {
         btnPlay.addEventListener("click",pet.playPet)
 
         //pet is alive
-        let moveInterval = setInterval(pet.moveAlive,500)
-        pet.moveAlive()
         console.log(pet)
     }
 }

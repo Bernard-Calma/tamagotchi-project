@@ -36,8 +36,19 @@ body {
 #idPetImage {
     height: 250px;
     position: relative;
-    left: auto;
 }
+
+@keyframes move {
+    0% {left: -10px;}
+    20% {left: -5px;}
+    30% {left: 0px;}
+    40% {left: 5px;}
+    50% {left: 10px;}
+    60% {left: 5px;}
+    70% {left: 0px;}
+    80% {left: -5px;}
+    100% {left: -10px;}
+  }
 
 footer {
     background-color: rgb(0, 90, 120);
