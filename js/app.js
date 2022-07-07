@@ -17,6 +17,8 @@ class Game {
         this.boredomInterval = setInterval(this.addBoredom,10000)
         console.log("Add Boredom Starts")
         this.ageInterval = setInterval(this.addAge,50000)
+
+        
     }
 
     updateStats = () => {
@@ -61,6 +63,19 @@ class Game {
 
         console.log("updateStats() completed : All labels are updated.")
         // console.log(petImage.attributes[0].value)
+    }
+
+    sleeping = () => {
+        // sleeping mode
+        let lblSleep = document.querySelector("#lblSleeping")
+        this.sleepAdd = setInterval(()=>{
+            lblSleep.setAttribute("hidden",true)    
+            console.log("Sleep added")           
+        },1000)
+        this.sleepRemove = setInterval(()=>{
+            lblSleep.removeAttribute("hidden")     
+            console.log("Sleep removed")             
+        },2000)
     }
 
     petDied = () => {
@@ -169,13 +184,19 @@ class Game {
     }
 
     lightSwitch = () => {
+        
         if (this.light === "on") {
             // alert("light is turned off")
             this.light = "off"
+            
+            this.sleeping()
             this.updateStats()
         } else if (this.light === "off") {
             // alert("light is turned on")
             this.light = "on"
+            clearInterval(this.sleepAdd)
+            clearInterval(this.sleepRemove)
+            document.querySelector("#lblSleeping").setAttribute("hidden",true)
             this.updateStats()
         }
         
