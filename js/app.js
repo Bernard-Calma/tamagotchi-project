@@ -11,11 +11,11 @@ class Game {
 
         // +1 stats every interval
         this.hungerInterval = setInterval(this.addHunger,5000)
-        console.log("Add Hunger Starts")
+        // console.log("Add Hunger Starts")
         this.sleepinessInterval = setInterval(this.updateSleepiness,20000)
-        console.log("Update Sleepiness Starts")
+        // console.log("Update Sleepiness Starts")
         this.boredomInterval = setInterval(this.addBoredom,10000)
-        console.log("Add Boredom Starts")
+        // console.log("Add Boredom Starts")
         this.ageInterval = setInterval(this.addAge,30000)
         //call movealive
         this.moveInterval = setInterval(this.moveAlive,500)
@@ -26,20 +26,20 @@ class Game {
     updateStats = () => {
         let lblName = document.querySelector("#petName")
         let lblHunger = document.querySelector("#hunger")
-        let lblSleepiness = document.querySelector("#sleepiness")
+        let lblPopUpiness = document.querySelector("#sleepiness")
         let lblBoredom = document.querySelector("#boredom")
         let lblAge = document.querySelector("#age")
         let lblLight = document.querySelector("#lightStatus")
         let lblLight2 = document.querySelector("#lblLight")
         let petImage = document.querySelector("#idPetImage")
-        let lblSleep = document.querySelector("#lblPopUp")
+        let lblPopUp = document.querySelector("#lblPopUp")
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
-        lblSleepiness.innerText = this.sleepiness
+        lblPopUpiness.innerText = this.sleepiness
         lblBoredom.innerText = this.boredom
         lblAge.innerText = this.age
         lblLight2.innerText = this.light
-        console.log("light",this.light)
+        // console.log("light",this.light)
         // if light status is on, make button show turn off lights. Viceversa
         if(this.light === "on"){
             lblLight.innerText = "off"
@@ -55,7 +55,7 @@ class Game {
         }
         
         //change image according to Age
-        console.log(this.alive)
+        // console.log(this.alive)
         if (this.name === "" && this.alive === true) {
             this.petImage = "images/light_blue_egg.png"
         } else if (this.age >= 0 && this.age < 5 && this.alive === true) {
@@ -67,13 +67,13 @@ class Game {
         }
         petImage.attributes[0].value = this.petImage
 
-        console.log("updateStats() completed : All labels are updated.")
+        // console.log("updateStats() completed : All labels are updated.")
         // console.log(petImage.attributes[0].value)
-        console.log(this.petImage)
+        // console.log(this.petImage)
 
         //clear message
         lblStatusMessage.setAttribute("hidden",true)
-        lblSleep.setAttribute("hidden",true)
+        lblPopUp.setAttribute("hidden",true)
     }
 
     sleeping = () => {
@@ -82,15 +82,15 @@ class Game {
         disableFooter()
         //enable turn on light
         btnLight.removeAttribute("disabled")
-        lblSleep.innerHTML = "&nbsp; z<br>&nbsp;z<br>z"
+        lblPopUp.innerHTML = "&nbsp; z<br>&nbsp;z<br>z"
         //animate zzz 
         this.sleepAdd = setInterval(()=>{
-            lblSleep.setAttribute("hidden",true)    
-            console.log("Sleep added")           
+            lblPopUp.setAttribute("hidden",true)    
+            // console.log("Sleep added")           
         },1000)
         this.sleepRemove = setInterval(()=>{
-            lblSleep.removeAttribute("hidden")     
-            console.log("Sleep removed")             
+            lblPopUp.removeAttribute("hidden")     
+            // console.log("Sleep removed")             
         },2000)
         //stop pet moving
         this.stopMove()
@@ -123,22 +123,22 @@ class Game {
         }
         this.hunger +=1 
         this.updateStats()
-        console.log("Hunger increased!")
+        // console.log("Hunger increased!")
         if (this.hunger >= 10) {
             lblStatusMessage.innerText = "Your pet died from hunger."
             this.petDied()
-            console.log("Add Hunger stops")
+            // console.log("Add Hunger stops")
         }
     }
 
     addSleepiness = () => {
         this.sleepiness +=1 
         this.updateStats()
-        console.log("Sleepiness increased!")
+        // console.log("Sleepiness increased!")
         if (this.sleepiness >= 10) {
             lblStatusMessage.innerText = "Your pet died from lack of sleep."
             this.petDied()
-            console.log("Add Sleepiness stops")
+            // console.log("Add Sleepiness stops")
         }
     }
 
@@ -148,7 +148,7 @@ class Game {
         }
         this.boredom +=1 
         this.updateStats()
-        console.log("Boredom increased!")
+        // console.log("Boredom increased!")
         if (this.boredom >= 10) {
             lblStatusMessage.innerText = "Your pet died from boredom."
             lblStatusMessage.removeAttribute("hidden")
@@ -160,14 +160,14 @@ class Game {
     addAge = () => {
         this.age +=1 
         this.updateStats()
-        console.log("Age increased!")
+        // console.log("Age increased!")
     }
 
     feedPet = () => {
-        console.log("Feed Pet Initianted")
+        // console.log("Feed Pet Initianted")
         lblStatusMessage.innerText = `You feed ${this.name}` 
-        let lblSleep = document.querySelector("#lblPopUp")
-        lblSleep.innerHTML = "<img src=\"images/food.png\"/>"
+        let lblPopUp = document.querySelector("#lblPopUp")
+        lblPopUp.innerHTML = "<img src=\"images/food.png\"/>"
         this.moveToEat()
         if (this.hunger > 0) {
             this.hunger -= 1
@@ -176,12 +176,12 @@ class Game {
         } else if (this.hunger <= 0) {
             lblStatusMessage.innerText = "Your pet is full."
         }
-        lblSleep.removeAttribute("hidden")
+        lblPopUp.removeAttribute("hidden")
         lblStatusMessage.removeAttribute("hidden")
     }
 
     playPet = () => {
-        console.log("Play Pet Initianted")
+        // console.log("Play Pet Initianted")
         lblStatusMessage.innerText = `You play with ${this.name}` 
         if (this.boredom > 0) {
             this.boredom -= 1
@@ -194,7 +194,7 @@ class Game {
     }
 
     decreaseSleepiness = () => {
-        console.log("decerease Sleepiness Initiated")
+        // console.log("decerease Sleepiness Initiated")
         if (this.sleepiness > 0) {
             this.sleepiness -= 1
             this.updateStats()
@@ -205,20 +205,21 @@ class Game {
     }
 
     increaseSleepiness = () => {
-        console.log("add Sleepiness Initiated")
+        // console.log("add Sleepiness Initiated")
         if (this.sleepiness < 10) {
             this.sleepiness += 1
             this.updateStats()
         } else if (this.sleepiness >= 10) {
             this.petDied()
-            console.log("Add Sleepiness stops")
+            // console.log("Add Sleepiness stops")
         }
     }
 
     lightSwitch = () => {
-        
+        let backgroundLight = document.querySelector(".petImage")
         if (this.light === "on") {
             // alert("light is turned off")
+            backgroundLight.style.backgroundColor = "rgb(0, 0, 50)"
             lblStatusMessage.innerText = "You turned off the lights"
             lblStatusMessage.removeAttribute("hidden")
             this.light = "off"
@@ -228,13 +229,14 @@ class Game {
             
         } else if (this.light === "off") {
             // alert("light is turned on")
+            backgroundLight.style.backgroundColor = "rgb(0, 255, 255)"
             lblStatusMessage.innerText = "You turned on the lights"
             lblStatusMessage.removeAttribute("hidden")
             // lblStatusMessage.setAttribute("hidden",true)
             this.light = "on"
             clearInterval(this.sleepAdd)
             clearInterval(this.sleepRemove)
-            document.querySelector("#lblSleeping").setAttribute("hidden",true)
+            document.querySelector("#lblPopUp").setAttribute("hidden",true)
             // this.updateStats()
             enableFooter()
             // move pet
@@ -245,8 +247,8 @@ class Game {
 
     // decrease sleepienss if light is on. Vise-Versa
     updateSleepiness = () => {
-        console.log("Update Sleepines Start")
-        console.log("Update Sleepiness:",this.light)
+        // console.log("Update Sleepines Start")
+        // console.log("Update Sleepiness:",this.light)
         if (this.light === "on") {
             this.addSleepiness()
         } else if (this.light === "off") {
@@ -256,7 +258,7 @@ class Game {
 
     // move pet left and right when alive
     moveAlive = () => {
-        console.log("Pet moved")
+        // console.log("Pet moved")
         let petImagePosition = document.querySelector("#idPetImage")
         petImagePosition.style.animation = "move 1s infinite"
         // console.log("move alive;",petImagePosition.style.left)
@@ -299,7 +301,10 @@ const enableFooter = () => {
     }
 
 const playGame = () => {
-    console.log(btnPlayRestart.innerText)
+    // console.log(btnPlayRestart.innerText)
+    if (btnPlayRestart.innerText === "Play Again"){
+        location.reload()
+    }
     // console.log(inputName.value)
     if (inputName.value === "") {
 
@@ -321,7 +326,7 @@ const playGame = () => {
         btnPlay.addEventListener("click",pet.playPet)
 
         //pet is alive
-        console.log(pet)
+        // console.log(pet)
     }
 }
 
