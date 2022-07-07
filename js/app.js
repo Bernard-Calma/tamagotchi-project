@@ -224,6 +224,13 @@ class Game {
         }
     }
 
+    moveAlive = () => {
+        console.log("Pet moved")
+        let petImagePosition = document.querySelector("#idPetImage")
+        petImagePosition.style.left = `${-1 + Math.round(Math.random())*10}px`
+        // console.log("move alive;",petImagePosition.style.left)
+    }
+
 }
 
 // buttons
@@ -248,27 +255,31 @@ const enableFooter = () => {
     }
 
 const playGame = () => {
+    console.log(btnPlayRestart.innerText)
     // console.log(inputName.value)
     if (inputName.value === "") {
 
     } else {
-    //disable play button and label message
-    btnPlayRestart.setAttribute("hidden",true)
-    lblStatusMessage.setAttribute("hidden", true)
-    inputName.setAttribute("hidden",true)
-    //enable footer buttons
-    enableFooter()
+        //disable play button and label message
+        btnPlayRestart.setAttribute("hidden",true)
+        lblStatusMessage.setAttribute("hidden", true)
+        inputName.setAttribute("hidden",true)
+        //enable footer buttons
+        enableFooter()
 
-    let petName = inputName.value
-    const pet = new Game(petName)
-    pet.updateStats()
+        let petName = inputName.value
+        const pet = new Game(petName)
+        pet.updateStats()
 
-    // console.log(petButton)
-    btnPet.addEventListener("click",pet.feedPet)
-    btnLight.addEventListener("click",pet.lightSwitch)
-    btnPlay.addEventListener("click",pet.playPet)
+        // console.log(petButton)
+        btnPet.addEventListener("click",pet.feedPet)
+        btnLight.addEventListener("click",pet.lightSwitch)
+        btnPlay.addEventListener("click",pet.playPet)
 
-    console.log(pet)
+        //pet is alive
+        let moveInterval = setInterval(pet.moveAlive,500)
+        pet.moveAlive()
+        console.log(pet)
     }
 }
 
