@@ -16,7 +16,7 @@ class Game {
         console.log("Update Sleepiness Starts")
         this.boredomInterval = setInterval(this.addBoredom,10000)
         console.log("Add Boredom Starts")
-        this.ageInterval = setInterval(this.addAge,50000)
+        this.ageInterval = setInterval(this.addAge,30000)
         //call movealive
         this.moveInterval = setInterval(this.moveAlive,500)
 
@@ -57,9 +57,9 @@ class Game {
         console.log(this.alive)
         if (this.name === "" && this.alive === true) {
             this.petImage = "images/light_blue_egg.png"
-        } else if (this.age >= 0 && this.age < 10 && this.alive === true) {
+        } else if (this.age >= 0 && this.age < 5 && this.alive === true) {
             this.petImage = "images/baby_blue_dragon.png"
-        } else if (this.age > 10 && this.alive === true) {
+        } else if (this.age > 5 && this.alive === true) {
             this.petImage = "images/adult_dragon.gif"
         } else if (this.alive === false) {
             this.petImage = "images/tombstone.png"
@@ -163,25 +163,28 @@ class Game {
 
     feedPet = () => {
         console.log("Feed Pet Initianted")
+        lblStatusMessage.innerText = `You feed ${this.name}` 
         if (this.hunger > 0) {
             this.hunger -= 1
             this.updateStats()
+            
         } else if (this.hunger <= 0) {
             lblStatusMessage.innerText = "Your pet is full."
-            lblStatusMessage.removeAttribute("hidden")
         }
+        lblStatusMessage.removeAttribute("hidden")
     }
 
     playPet = () => {
         console.log("Play Pet Initianted")
+        lblStatusMessage.innerText = `You play with ${this.name}` 
         if (this.boredom > 0) {
             this.boredom -= 1
             this.updateStats()
         } else if (this.boredom <= 0) {
             console.log(this.boredom)
             lblStatusMessage.innerText = "Your pet is not bored."
-            lblStatusMessage.removeAttribute("hidden")
         }
+        lblStatusMessage.removeAttribute("hidden")
     }
 
     decreaseSleepiness = () => {
