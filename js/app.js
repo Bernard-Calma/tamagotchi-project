@@ -26,7 +26,7 @@ class Game {
     updateStats = () => {
         let lblName = document.querySelector("#petName")
         let lblHunger = document.querySelector("#hunger")
-        let lblPopUpiness = document.querySelector("#sleepiness")
+        let lblsleepiness = document.querySelector("#sleepiness")
         let lblBoredom = document.querySelector("#boredom")
         let lblAge = document.querySelector("#age")
         let lblLight = document.querySelector("#lightStatus")
@@ -35,7 +35,7 @@ class Game {
         let lblPopUp = document.querySelector("#lblPopUp")
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
-        lblPopUpiness.innerText = this.sleepiness
+        lblsleepiness.innerText = this.sleepiness
         lblBoredom.innerText = this.boredom
         lblAge.innerText = this.age
         lblLight2.innerText = this.light
@@ -165,15 +165,16 @@ class Game {
 
     feedPet = () => {
         // console.log("Feed Pet Initianted")
-        lblStatusMessage.innerText = `You feed ${this.name}` 
-        let lblPopUp = document.querySelector("#lblPopUp")
-        lblPopUp.innerHTML = "<img src=\"images/food.png\"/>"
-        this.moveToEat()
+        
+        
         if (this.hunger > 0) {
+            this.moveToEat()
+            lblStatusMessage.innerText = `You feed ${this.name}` 
+            lblPopUp.innerHTML = "<img src=\"images/food.png\"/>"
             this.hunger -= 1
             this.updateStats()
-            
         } else if (this.hunger <= 0) {
+            lblPopUp.setAttribute("hidden",true)
             lblStatusMessage.innerText = "Your pet is full."
         }
         lblPopUp.removeAttribute("hidden")
@@ -183,13 +184,16 @@ class Game {
     playPet = () => {
         // console.log("Play Pet Initianted")
         lblStatusMessage.innerText = `You play with ${this.name}` 
+        
+        lblPopUp.innerHTML = "<img src=\"images/playHeart.png\"/>"
         if (this.boredom > 0) {
             this.boredom -= 1
             this.updateStats()
         } else if (this.boredom <= 0) {
-            console.log(this.boredom)
+            // console.log(this.boredom)
             lblStatusMessage.innerText = "Your pet is not bored."
         }
+        lblPopUp.removeAttribute("hidden")
         lblStatusMessage.removeAttribute("hidden")
     }
 
