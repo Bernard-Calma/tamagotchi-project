@@ -176,7 +176,8 @@ class Game {
             this.sleepiness -= 1
             this.updateStats()
         } else if (this.sleepiness <= 0) {
-            alert("Your Pet is not sleepy")
+            lblStatusMessage.innerText = this.name+" is not sleepy anymore"
+            lblStatusMessage.removeAttribute("hidden")
         }
     }
 
@@ -201,6 +202,7 @@ class Game {
             this.updateStats()
         } else if (this.light === "off") {
             // alert("light is turned on")
+            lblStatusMessage.setAttribute("hidden",true)
             this.light = "on"
             clearInterval(this.sleepAdd)
             clearInterval(this.sleepRemove)
