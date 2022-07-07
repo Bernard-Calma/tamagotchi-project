@@ -227,6 +227,7 @@ class Game {
 // buttons
 let btnPlayRestart = document.querySelector("#btnPlayRestart")
 let lblStatusMessage = document.querySelector("#lblStatusMessage")
+let inputName = document.querySelector("#inputName")
 const btnPet = document.querySelector("#btnFeed")
 const btnLight = document.querySelector("#btnLight")
 const btnPlay = document.querySelector("#btnPlay")
@@ -248,6 +249,7 @@ const playGame = () => {
     //disable play button and label message
     btnPlayRestart.setAttribute("hidden",true)
     lblStatusMessage.setAttribute("hidden", true)
+    inputName.setAttribute("hidden",true)
     //enable footer buttons
     enableFooter()
 
