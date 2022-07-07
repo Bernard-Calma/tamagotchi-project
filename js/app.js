@@ -71,6 +71,8 @@ class Game {
 
     sleeping = () => {
         // sleeping mode
+        disableFooter()
+        btnLight.removeAttribute("disabled")
         let lblSleep = document.querySelector("#lblSleeping")
         this.sleepAdd = setInterval(()=>{
             lblSleep.setAttribute("hidden",true)    
@@ -163,6 +165,7 @@ class Game {
             this.boredom -= 1
             this.updateStats()
         } else if (this.boredom <= 0) {
+            console.log(this.boredom)
             alert("Your Pet is not bored")
         }
     }
@@ -203,6 +206,7 @@ class Game {
             clearInterval(this.sleepRemove)
             document.querySelector("#lblSleeping").setAttribute("hidden",true)
             this.updateStats()
+            enableFooter()
         }
         
     }
@@ -234,14 +238,18 @@ btnLight.setAttribute("disabled",true)
 btnPlay.setAttribute("disabled",true)
 }
 
+const enableFooter = () => {
+    btnPet.removeAttribute("disabled")
+    btnLight.removeAttribute("disabled")
+    btnPlay.removeAttribute("disabled")
+    }
+
 const playGame = () => {
     //disable play button and label message
     btnPlayRestart.setAttribute("hidden",true)
     lblStatusMessage.setAttribute("hidden", true)
     //enable footer buttons
-    btnPet.removeAttribute("disabled")
-    btnLight.removeAttribute("disabled")
-    btnPlay.removeAttribute("disabled")
+    enableFooter()
 
     let petName = prompt("Please name your pet")
     const pet = new Game(petName)
