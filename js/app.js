@@ -100,6 +100,7 @@ class Game {
         btnPlayRestart.removeAttribute("hidden")
         lblStatusMessage.innerText = "Your pet died."
         lblStatusMessage.removeAttribute("hidden")
+        disableFooter()
     }
 
     addHunger = () => {
@@ -225,9 +226,11 @@ const btnLight = document.querySelector("#btnLight")
 const btnPlay = document.querySelector("#btnPlay")
 
 //disable buttons at first load
+const disableFooter = () => {
 btnPet.setAttribute("disabled",true)
 btnLight.setAttribute("disabled",true)
 btnPlay.setAttribute("disabled",true)
+}
 
 const playGame = () => {
     //disable play button and label message
@@ -251,6 +254,7 @@ const playGame = () => {
 }
 
 
+disableFooter()
 btnPlayRestart.addEventListener("click", playGame)
 
 
