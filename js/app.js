@@ -90,6 +90,7 @@ class Game {
         this.age = 0
         this.alive = true
         this.light = "on"
+        this.petImage = "images/tombstone.png"
     }
 
     addHunger = () => {
@@ -236,6 +237,6 @@ let petImage = document.querySelector("#idPetImage")
 petImage.addEventListener("click", playGame)
 
 
-    
+
     
     
