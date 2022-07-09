@@ -1,3 +1,23 @@
+
+// DOM
+let lblName = document.querySelector("#petName")
+let lblHunger = document.querySelector("#hunger")
+let lblsleepiness = document.querySelector("#sleepiness")
+let lblBoredom = document.querySelector("#boredom")
+let lblAge = document.querySelector("#age")
+let lblLight = document.querySelector("#lightStatus")
+let lblLight2 = document.querySelector("#lblLight")
+let petImage = document.querySelector("#idPetImage")
+let lblPopUp = document.querySelector("#lblPopUp")
+
+// buttons
+let btnPlayRestart = document.querySelector("#btnPlayRestart")
+let lblStatusMessage = document.querySelector("#lblStatusMessage")
+let inputName = document.querySelector("#inputName")
+const btnPet = document.querySelector("#btnFeed")
+const btnLight = document.querySelector("#btnLight")
+const btnPlay = document.querySelector("#btnPlay")
+
 class Game {
     constructor (name) {
         this.name = name
@@ -18,21 +38,11 @@ class Game {
         // console.log("Add Boredom Starts")
         this.ageInterval = setInterval(this.addAge,30000)
         //call movealive
-        this.moveInterval = setInterval(this.moveAlive,500)
-
-        
+        this.moveInterval = setInterval(this.moveAlive,500)    
     }
 
     updateStats = () => {
-        let lblName = document.querySelector("#petName")
-        let lblHunger = document.querySelector("#hunger")
-        let lblsleepiness = document.querySelector("#sleepiness")
-        let lblBoredom = document.querySelector("#boredom")
-        let lblAge = document.querySelector("#age")
-        let lblLight = document.querySelector("#lightStatus")
-        let lblLight2 = document.querySelector("#lblLight")
-        let petImage = document.querySelector("#idPetImage")
-        let lblPopUp = document.querySelector("#lblPopUp")
+        
         lblName.innerText = this.name
         lblHunger.innerText = this.hunger
         lblsleepiness.innerText = this.sleepiness
@@ -125,7 +135,7 @@ class Game {
         this.updateStats()
         // console.log("Hunger increased!")
         if (this.hunger >= 10) {
-            lblStatusMessage.innerText = "Your pet died from hunger."
+            lblStatusMessage.innerText = `${this.name} died from hunger.`
             this.petDied()
             // console.log("Add Hunger stops")
         }
@@ -136,7 +146,7 @@ class Game {
         this.updateStats()
         // console.log("Sleepiness increased!")
         if (this.sleepiness >= 10) {
-            lblStatusMessage.innerText = "Your pet died from lack of sleep."
+            lblStatusMessage.innerText = `${this.name} died from lack of sleep.`
             this.petDied()
             // console.log("Add Sleepiness stops")
         }
@@ -150,7 +160,7 @@ class Game {
         this.updateStats()
         // console.log("Boredom increased!")
         if (this.boredom >= 10) {
-            lblStatusMessage.innerText = "Your pet died from boredom."
+            lblStatusMessage.innerText = `${this.name} died from boredom.`
             lblStatusMessage.removeAttribute("hidden")
             this.petDied()
             console.log("Add Boredom stops")
@@ -175,7 +185,7 @@ class Game {
             this.updateStats()
         } else if (this.hunger <= 0) {
             lblPopUp.setAttribute("hidden",true)
-            lblStatusMessage.innerText = "Your pet is full."
+            lblStatusMessage.innerText = `${this.name} is full.`
         }
         lblPopUp.removeAttribute("hidden")
         lblStatusMessage.removeAttribute("hidden")
@@ -191,7 +201,7 @@ class Game {
             this.updateStats()
         } else if (this.boredom <= 0) {
             // console.log(this.boredom)
-            lblStatusMessage.innerText = "Your pet is not bored."
+            lblStatusMessage.innerText = `${this.name} is not bored.`
         }
         lblPopUp.removeAttribute("hidden")
         lblStatusMessage.removeAttribute("hidden")
@@ -222,17 +232,18 @@ class Game {
     lightSwitch = () => {
         let backgroundLight = document.querySelector(".petImage")
         if (this.light === "on") {
-            // alert("light is turned off")
+            console.log("light is turned off")
+            lblLight.innerText = "on"
             backgroundLight.style.backgroundColor = "rgb(0, 0, 50)"
             lblStatusMessage.innerText = "You turned off the lights"
             lblStatusMessage.removeAttribute("hidden")
-            this.light = "off"
-            
+            this.light = "off"      
             this.sleeping()
             // this.updateStats()
             
         } else if (this.light === "off") {
-            // alert("light is turned on")
+            console.log("light is turned on")
+            lblLight.innerText = "off"
             backgroundLight.style.backgroundColor = "rgb(0, 255, 255)"
             lblStatusMessage.innerText = "You turned on the lights"
             lblStatusMessage.removeAttribute("hidden")
@@ -246,6 +257,7 @@ class Game {
             // move pet
             this.moveInterval = setInterval(this.moveAlive,100)
         }
+        
         
     }
 
@@ -283,13 +295,7 @@ class Game {
 
 }
 
-// buttons
-let btnPlayRestart = document.querySelector("#btnPlayRestart")
-let lblStatusMessage = document.querySelector("#lblStatusMessage")
-let inputName = document.querySelector("#inputName")
-const btnPet = document.querySelector("#btnFeed")
-const btnLight = document.querySelector("#btnLight")
-const btnPlay = document.querySelector("#btnPlay")
+
 
 //disable buttons at first load
 const disableFooter = () => {
@@ -338,3 +344,6 @@ const playGame = () => {
 disableFooter()
 btnPlayRestart.addEventListener("click", playGame)
 
+
+// move variables on top
+// seperate pet class to game class
