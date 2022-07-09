@@ -287,12 +287,6 @@ class Game {
         clearInterval(this.moveInterval)
 
     }
-
-    moveToEat = () => {
-        
-    }
-
-
 }
 
 
